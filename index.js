@@ -1,6 +1,8 @@
 const readline = require('readline');
 const cheerio = require('cheerio');
 const request = require('request');
+const specificArea = require('./specificArea');
+const fullWebsite = require('./fullWebsite');
 
 const urlInput = readline.createInterface({
   input: process.stdin,
@@ -23,10 +25,10 @@ function scapUrlFn(){
                             console.log({answer}, typeof answer);
                             switch(parseInt(answer)){
                                 case 1:
-                                    fullWebsite();
+                                    fullWebsite.fullWebsite(urlInput, $);
                                     break;
                                 case 2: 
-                                    specificArea();
+                                    specificArea.specificArea();
                                     break;
                                 default: 
                                 console.log('Wrong Choice- ');
@@ -35,29 +37,6 @@ function scapUrlFn(){
                         })
                     }
         
-                    function fullWebsite(){
-                        console.log('working');
-                        const fullSite = $('html');
-                        
-                        urlInput.question('Enter your choice \n 1. Site Html \n 2. Site Text \n', (answer) => {
-                            console.log({answer}, typeof answer);
-                            switch(parseInt(answer)){
-                                case 1:
-                                    console.log(fullSite.html());                                    
-                                    break;
-                                case 2: 
-                                    console.log(fullSite.text());
-                                    break;
-                                default: 
-                                    console.log('Wrong Choice- ');
-                                    fullWebsite();
-                            }
-                        })
-                    }
-        
-                    function specificArea(){
-                        console.log('sdasfsfs');
-                    }
                 }
                 else{
                     console.log('Something went wrong, try again');
